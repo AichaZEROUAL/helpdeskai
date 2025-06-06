@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.enset.demo.controllers.ChatbotController"
+            style="-fx-background-color: #1e1e1e;">
+
+    <!-- Header -->
+    <top>
+        <HBox spacing="10" alignment="CENTER" style="-fx-background-color: #252526; -fx-padding: 10px;" >
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="headerLabel" text="Assistance Technique - Chatbot Helpdesk"
+                   style="-fx-font-size: 24px; -fx-text-fill: white; -fx-alignment: CENTER; -fx-text-alignment: CENTER;"
+                   alignment="CENTER" BorderPane.alignment="CENTER"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Déconnexion" onAction="#handleLogout"
+                    style="-fx-background-color: #0e639c; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
+    <!-- Sidebar for chat history -->
+    <left>
+        <VBox spacing="10" prefWidth="250"
+              style="-fx-background-color: #252526;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="📂 Historique"
+                       style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"
+                       HBox.hgrow="ALWAYS"/>
+
+                <Pane HBox.hgrow="ALWAYS"/> <!-- Spacer -->
+
+                <Button text="+" onAction="#handleNewChat"
+                        style="-fx-font-size: 24px; -fx-background-color: transparent; -fx-text-fill: white;"/>
+            </HBox>
+
+
+            <ListView fx:id="chatTitleList" VBox.vgrow="ALWAYS"
+                      style="-fx-background-color: #1e1e1e; -fx-control-inner-background: #1e1e1e; -fx-text-fill: #ffffff;"/>
+        </VBox>
+    </left>
+
+    <!-- Center chat display -->
+    <center>
+        <VBox spacing="10" style="-fx-background-color: #1e1e1e;">
+            <AnchorPane prefHeight="40" style="-fx-background-color: #1e1e1e;">
+                <Button text="Help ?" onAction="#helpmessage"
+                        style="-fx-font-size: 13px;  -fx-background-color: transparent; -fx-text-fill: #0d6efd;"
+                        AnchorPane.rightAnchor="10"
+                AnchorPane.topAnchor="10"
+                />
+            </AnchorPane>
+            <ScrollPane fitToWidth="true" fitToHeight="true"
+                        VBox.vgrow="ALWAYS"
+                        style="-fx-background-color: transparent;">
+                <VBox fx:id="chatHistory" spacing="8"
+                      style="-fx-background-color: #1e1e1e;">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                </VBox>
+            </ScrollPane>
+
+            <!-- User input at the bottom of the center -->
+            <HBox spacing="10" style="-fx-padding: 10;">
+                <TextField fx:id="userInput"
+                           promptText="Posez votre question ici..."
+                           style="-fx-background-color: #1e1e1e; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #aaaaaa;"
+                           HBox.hgrow="ALWAYS"/>
+                <Button fx:id="sendButton" text="Envoyer"
+                        onAction="#handleSend"
+                        style="-fx-background-color: #0e639c; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
